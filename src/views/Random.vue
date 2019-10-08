@@ -1,5 +1,19 @@
 <template>
   <div class="random">
-    <h1>This is a page with a random dish</h1>
+    <h1>Today's meal:</h1>
+    <RandomRecipe/>
   </div>
 </template>
+
+
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
+import RandomRecipe from '@/components/RandomRecipe.vue'; // @ is an alias to /src
+
+@Component({
+  components: {
+    RandomRecipe,
+  },
+})
+export default class Random extends Vue {}
+</script>
