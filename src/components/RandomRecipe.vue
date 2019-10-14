@@ -61,7 +61,8 @@ export default class RandomRecipe extends Vue {
         meal.strIngredient19,
         meal.strIngredient20,
         ];
-      self.recipe.ingredients = self.recipe.ingredients.filter( (ingridient) => ingridient !== '');
+      self.recipe.ingredients = self.recipe.ingredients.filter( (ingridient) => ingridient !== ''
+      && ingridient !== null);
     })
     .catch( (error) => {
       // console.log(error);

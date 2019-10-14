@@ -1,10 +1,10 @@
 <template>
   <div class="recipes" >
-    <div class="recipe" v-for="meal in meals" v-bind:key="meal">  
+    <router-link to="/recipeDetails" class="recipe" v-for="meal in meals" v-bind:key="meal">  
       <img src="" alt="Meal image"/>
       <h1>{{ meal }}</h1>
       <p>description goes here</p>
-    </div>
+    </router-link>
   </div>
 </template>
 

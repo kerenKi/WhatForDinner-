@@ -6,11 +6,24 @@
     <p> <strong> Category:</strong> {{ recipe.category }}</p>
     <P><strong>Ingredients:</strong></P>
     <ul>
-      <li v-for="ingridient in recipe.ingredients" v-bind:key="ingridient.index">
+      <li v-for="ingridient in recipe.ingredients" :key="ingridient.index">
         {{ ingridient }}
       </li>
     </ul>
     <span> <strong> Instruction: </strong>{{ recipe.instructions }}</span>
+
+    <div>
+      <h1> More from the {{ recipe.category }} category:</h1>
+      <ul>
+        <li v-for="option in moreRecipes" :key="option.id">
+          <a @click="goToRecipe(option.id)">
+            {{ option.title }}
+            <img :src="option.image"/>
+          </a>
+        </li>
+      </ul>
+
+    </div>
   </div>
 </template>
 
@@ -18,6 +31,7 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { mealApi } from '../api';
 import { Recipe } from '../models/recipe';
+import { RecipeTeaser } from '../models/recipesTeaser';
 
 @Component
 export default class RecipeDetails extends Vue {
@@ -27,12 +41,29 @@ export default class RecipeDetails extends Vue {
     instructions: '',
     image: '',
     ingredients: [],
-
   };
 
-  public mounted() {
+  public moreRecipes: RecipeTeaser[] = [];
+
+  public getCategory() {
+      mealApi.get(`filter.php?c=${this.recipe.category}`)
+      .then((response) => {
+        for (let i = 0; i < 3; i++) {
+          const mealTeaser = {
+            id: response.data.meals[i].idMeal,
+            title: response.data.meals[i].strMeal,
+            image: response.data.meals[i].strMealThumb,
+          };
+          this.moreRecipes.push(mealTeaser);
+        }
+      })
+      .catch( (error) => {
+        // console.log(error);
+      });
+    }
+  public getMealById() {
     const self = this;
-    mealApi.get('lookup.php?i=52772')
+    mealApi.get(`lookup.php?i=${this.$route.params.id}`)
     .then((response) => {
       const meal = response.data.meals[0];
       self.recipe.title = meal.strMeal;
@@ -61,12 +92,24 @@ export default class RecipeDetails extends Vue {
         meal.strIngredient19,
         meal.strIngredient20,
         ];
-      self.recipe.ingredients = self.recipe.ingredients.filter( (ingridient) => ingridient !== '');
+      self.recipe.ingredients = self.recipe.ingredients.filter( (ingridient) => ingridient !== ''
+      && ingridient !== null);
+      this.getCategory();
     })
     .catch( (error) => {
       // console.log(error);
     });
-}
+  }
+  public mounted() {
+    this.getMealById();
+  }
+
+  public goToRecipe(id: string) {
+    this.$router.push({ path: `/recipeDetails/${id}`});
+    this.moreRecipes = [];
+    this.getMealById();
+  }
+
 }
 </script>
 

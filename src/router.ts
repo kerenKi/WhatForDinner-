@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Home from './views/Home.vue';
+import RecipeDetails from '../src/components/RecipeDetails.vue';
 
 Vue.use(Router);
 
@@ -25,6 +26,11 @@ export default new Router({
       path: '/random',
       name: 'random',
       component: () => import(/* webpackChunkName: "about" */ './views/Random.vue'),
+    },
+    {
+      path: '/recipeDetails/:id',
+      name: 'recipeDetails',
+      component: RecipeDetails,
     },
   ],
 });
