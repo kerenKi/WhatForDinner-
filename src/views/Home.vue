@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <h1>What would you like to make?</h1>
     <Recipes />
   </div>
 </template>
