@@ -10,7 +10,8 @@
         {{ ingridient }}
       </li>
     </ul>
-    <span> <strong> Instruction: </strong>{{ recipe.instructions }}</span>
+    <div> <strong> Instruction: </strong>{{ recipe.instructions }}</div>
+    <button @click="onClick"> Show me another random recipe </button>
   </div>
 </template>
 
@@ -27,10 +28,9 @@ export default class RandomRecipe extends Vue {
     instructions: '',
     image: '',
     ingredients: [],
-
   };
 
-  public mounted() {
+  public getMeal() {
     const self = this;
     mealApi.get('random.php')
     .then((response) => {
@@ -66,7 +66,15 @@ export default class RandomRecipe extends Vue {
     .catch( (error) => {
       // console.log(error);
     });
-}
+
+  }
+  public mounted() {
+    this.getMeal();
+  }
+
+  public onClick() {
+    this.getMeal();
+  }
 }
 </script>
 
