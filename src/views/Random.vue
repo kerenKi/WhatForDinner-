@@ -1,6 +1,5 @@
 <template>
   <div class="random">
-    <h1>Today's meal:</h1>
     <RandomRecipe/>
   </div>
 </template>
