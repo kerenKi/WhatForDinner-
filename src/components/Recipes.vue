@@ -1,7 +1,7 @@
 <template>
   <div class="recipes" >
-    <select name="category" id="">
-      <option value="default">Pick a category</option>
+    <select name="category" id="" v-model="selected" @change="getMealsByCategory(selected)">
+      <option value="">Pick a category</option>
       <option value="beef">Beef</option>
       <option value="breakfast">Breakfast</option>
       <option value="chicken">Chicken</option>
@@ -17,7 +17,7 @@
       <option value="vegan">Vegan</option>
       <option value="vegetarian">Vegetarian</option>
     </select>
-      <ul>
+      <ul v-if="selected == ''">
         <li v-for="option in moreRecipes" :key="option.id">
           <a @click="goToRecipe(option.id)">
             {{ option.title }}
@@ -35,6 +35,7 @@ import { RecipeTeaser } from '../models/recipesTeaser';
 
 @Component
 export default class Recipes extends Vue {
+  public selected = '';
 
   public moreRecipes: RecipeTeaser[] = [];
 
@@ -66,6 +67,10 @@ export default class Recipes extends Vue {
 
   public mounted() {
     this.getTenMeals();
+  }
+
+  public getMealsByCategory(category) {
+    this.$router.push({ path: `/recipes/${category}`});
   }
 
   public goToRecipe(id: string) {
