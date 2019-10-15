@@ -2,26 +2,35 @@
   <div class="recipe">
     <h1>Today's meal:</h1>
     <h3>{{ recipe.title }}</h3>
-    <img :src="recipe.image"/>
-    <p> <strong> Category:</strong> {{ recipe.category }}</p>
-    <P><strong>Ingredients:</strong></P>
-    <ul>
-      <li v-for="ingridient in recipe.ingredients" :key="ingridient.index">
-        {{ ingridient }}
-      </li>
-    </ul>
-    <span> <strong> Instruction: </strong>{{ recipe.instructions }}</span>
+    <div class="full-recipe">
+      <div class="meal-info">
+        <img :src="recipe.image"/>
+        <p> <strong> Category:</strong> {{ recipe.category }}</p>
+        <P><strong>Ingredients:</strong></P>
+        <ul>
+          <li v-for="ingridient in recipe.ingredients" :key="ingridient.index">
+            {{ ingridient }}
+          </li>
+        </ul>
+      </div>
 
+      <div class="instructions"> <strong> Instructions: </strong>{{ recipe.instructions }}
+      </div>
+    </div>
     <div>
-      <h1> More from the {{ recipe.category }} category:</h1>
-      <ul>
-        <li v-for="option in moreRecipes" :key="option.id">
-          <a @click="goToRecipe(option.id)">
-            {{ option.title }}
-            <img :src="option.image"/>
-          </a>
-        </li>
-      </ul>
+      <h1 class="more-recipes-title"> More from the {{ recipe.category }} category:</h1>
+      <section class="cards-container">
+        <div v-for="option in moreRecipes" :key="option.id">
+          <article class="card">
+            <a @click="goToRecipe(option.id)">
+              <div class="flex-container">
+                <p><img :src="option.image" style="width:100%"/></p>
+                <h4>{{ option.title }}</h4>
+              </div>
+            </a>
+          </article>  
+        </div>
+      </section>
     </div>
   </div>
 </template>
@@ -130,4 +139,32 @@ export default class RecipeDetails extends Vue {
   ul {
     list-style: none;
   }
+
+  .meal-info {
+    display: flex;
+    float: left;
+    width: 40%;
+    margin: 15px;
+    border: 1px solid red;
+  }
+
+  .instructions {
+    display: flex;
+    float: right;
+    margin: 15px;
+    width: 50%;
+    border: 1px solid red;
+
+  }
+  .more-recipes-title {
+    position: relative;
+    top: 40px;
+    right: 255px;
+  }
+
+  .cards-container {
+    position: relative;
+    left: 250px;
+  }
+  
 </style>

@@ -1,14 +1,20 @@
 <template>
   <div class="recipes-by-category" >
     <h1>{{this.$route.params.category}} recipes </h1>
-      <ul>
-        <li v-for="recipe in recipes" :key="recipe.id">
-          <a @click="goToRecipe(recipe.id)">
-            {{ recipe.title }}
-            <img :src="recipe.image"/>
-          </a>
-        </li>
-      </ul>
+      <section class="cards-container">
+        <div v-for="recipe in recipes" :key="recipe.id" >
+          <article class="card">
+            <a @click="goToRecipe(recipe.id)">
+              <div class="flex-container">
+                <p><img :src="recipe.image" style="width:100%"/></p>            
+                <h4>
+                  {{ recipe.title }}
+                </h4>
+              </div>  
+            </a>
+          </article>  
+        </div>
+      </section>
   </div>
 </template>
 
