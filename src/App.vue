@@ -33,6 +33,7 @@
   margin-bottom: 20px; 
   width: 100%;
   background-color: rgba(132, 201, 178, 0.9);
+  z-index:99999;
   #headline {
     color: #2c3e50;
     font-weight: 700;
