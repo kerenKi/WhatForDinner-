@@ -1,7 +1,7 @@
 <template>
   <div class="categories-list" >
     <div class="categories" v-for="categorie in categories" v-bind:key="categorie.index">  
-      <h2>{{ categorie.strCategory }}</h2>
+      <a @click="goToCategory(categorie.strCategory)">{{ categorie.strCategory }}</a>
     </div>
   </div>
 </template>
@@ -23,6 +23,10 @@ export default class CategoriesList extends Vue {
     .catch( (error) => {
       // console.log(error);
     });
+  }
+
+  public goToCategory(category: string) {
+    this.$router.push({ path: `/recipes/${category}`});
   }
 }
 </script>
