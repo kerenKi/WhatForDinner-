@@ -1,5 +1,6 @@
 <template>
   <div class="recipes" >
+    <h3>Sort By Category</h3>
     <select name="category" id="" v-model="selected" @change="getMealsByCategory(selected)">
       <option value="">Pick a category</option>
       <option value="beef">Beef</option>
@@ -69,7 +70,7 @@ export default class Recipes extends Vue {
     this.getTenMeals();
   }
 
-  public getMealsByCategory(category) {
+  public getMealsByCategory(category: string) {
     this.$router.push({ path: `/recipes/${category}`});
   }
 

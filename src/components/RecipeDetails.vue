@@ -52,9 +52,12 @@ export default class RecipeDetails extends Vue {
         function random(): number {
           return Math.floor(Math.random() * pool);
         }
-        const randomArray: number[] = [random(), random(), random()];
+        // Creating a uniqe set of random numbers
+        const randomSet: Set<number> = new Set([random(), random(), random(), random(), random(), random()]);
+
+        const randomArray: number[] = Array.from(randomSet);
         for (let i = 0; i < 3; i++) {
-          const randomNumber = randomArray[i];
+          const randomNumber: number = randomArray[i];
           const mealTeaser = {
             id: response.data.meals[randomNumber].idMeal,
             title: response.data.meals[randomNumber].strMeal,
