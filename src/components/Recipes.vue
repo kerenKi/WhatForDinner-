@@ -91,5 +91,16 @@ export default class Recipes extends Vue {
 </script>
 
 <style scoped lang="scss">
+  @import url('https://fonts.googleapis.com/css?family=Fira+Sans+Condensed&display=swap');
 
+  select {
+    background-color: rgba(148, 252, 217, 0.338);
+    width: 320px;
+    height: 40px;
+    border: 0.5 solid gray;
+    font-family: 'Fira Sans Condensed', sans-serif;
+    font-size: 18px;
+    font-weight: 200;
+    color: gray;
+  }
 </style>
