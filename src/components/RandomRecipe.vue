@@ -1,17 +1,28 @@
 <template>
   <div class="recipe">
-    <a name="top"><h1>Today's meal:</h1></a>
-    <h3>{{ recipe.title }}</h3>
-    <img :src="recipe.image"/>
-    <p> <strong> Category:</strong> {{ recipe.category }}</p>
-    <P><strong>Ingredients:</strong></P>
-    <ul>
-      <li v-for="ingridient in recipe.ingredients" v-bind:key="ingridient.index">
-        {{ ingridient }}
-      </li>
-    </ul>
-    <div> <strong> Instruction: </strong>{{ recipe.instructions }}</div>
-    <a href="#top"> 
+    <div class="title">
+      <!-- <a name="top"><h1>Today's meal:</h1></a> -->
+      <h1>Today's meal:</h1>
+      <h3>{{ recipe.title }}</h3>
+    </div>
+    <div class="category-ingredients">
+      <div class="image-category">
+        <p> <img class="recipe-image" :src="recipe.image"/> </p>   
+        <p> <strong> Category:</strong> {{ recipe.category }} </p>
+      </div>
+        <div class="ingridients">
+        <P><strong> Ingredients: </strong></P>
+        <ul>
+          <li v-for="ingridient in recipe.ingredients" v-bind:key="ingridient.index">
+            {{ ingridient }}
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="instructions"> 
+      <strong> Instruction: </strong> {{ recipe.instructions }}
+    </div>
+    <a href="#top" class="random-button"> 
       <button @click="onClick"> Show me another random recipe </button>
     </a>
   </div>
@@ -90,49 +101,101 @@ export default class RandomRecipe extends Vue {
     list-style: none;
   }
 
-/* Reset */
-button {
-  background: transparent;
-  border: 0;
-  padding: 0;
-  cursor: pointer;
-  outline: 0;
-  -webkit-appearance: none;
-  margin:35px;
-}
+  .recipe {
+    display: grid;
+    grid-template-areas:
+      '. title title .'
+      'category-ingredients category-ingredients instruction instruction'
+      '. random-button random-button .';
+  }
 
-/* Custom */
-button {
-  display: inline-block;
-  position: relative;
-  padding: 20px 38px;
-  top: 0;
-  font-size: 30px;
-  font-family: "Open Sans", Helvetica;
-  border-radius: 4px;
-  border-bottom: 1px solid rgba( 28, 227, 125, 0.5 );
-  background: rgba(66, 103, 90, 0.9);
-  color: #fff;
-  box-shadow: 0px 0px 0px rgba( 15, 165, 60, 0.1 );
-  
-  -webkit-transform: translateZ(0);
-    -moz-transform: translateZ(0);
-      -ms-transform: translateZ(0);
-          transform: translateZ(0);
-  
-  -webkit-transition: all 0.2s ease;
-    -moz-transition: all 0.2s ease;
-      -ms-transition: all 0.2s ease;
-          transition: all 0.2s ease;
-}
+  .title {
+    grid-area: title;
+    grid-column: 1 / span 4;
+    grid-row: 1;
+    justify-content: center; 
 
-button:hover {
-  top: -10px;
-  box-shadow: 0px 10px 10px rgba( 15, 165, 60, 0.2 );
-  
-  -webkit-transform: rotateX(20deg);
-    -moz-transform: rotateX(20deg);
-      -ms-transform: rotateX(20deg);
-          transform: rotateX(20deg);
-}
+  }
+
+  .category-ingredients {
+    grid-area: category-ingredients;
+    padding: 15px;
+    display: grid;
+    grid-template-areas:
+      'image-category ingredients'
+      '. ingredients';
+  }
+
+  .image-category {
+    grid-area: image-category;
+    padding: 20px;
+    img {
+      width: 300px;
+      height: 350px;
+      padding: 10px;
+      background-color: rgb(200, 214, 200);
+    }
+  }
+
+  .ingredients {
+    grid-area: ingredients;
+    padding: 10px;
+    background-color: rgb(200, 214, 200);
+  }
+
+
+  .instructions {
+    grid-area: instruction;
+    padding: 30px;
+    justify-content: center;
+  }
+
+  .random-button {
+    grid-area: random-button;
+  }
+
+  button {
+    background: transparent;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    outline: 0;
+    -webkit-appearance: none;
+    margin:35px;
+  }
+
+
+  button {
+    display: inline-block;
+    position: relative;
+    padding: 20px 38px;
+    top: 0;
+    font-size: 30px;
+    font-family: "Open Sans", Helvetica;
+    border-radius: 4px;
+    border-bottom: 1px solid rgba( 28, 227, 125, 0.5 );
+    background: rgba(66, 103, 90, 0.9);
+    color: #fff;
+    box-shadow: 0px 0px 0px rgba( 15, 165, 60, 0.1 );
+    
+    -webkit-transform: translateZ(0);
+      -moz-transform: translateZ(0);
+        -ms-transform: translateZ(0);
+            transform: translateZ(0);
+    
+    -webkit-transition: all 0.2s ease;
+      -moz-transition: all 0.2s ease;
+        -ms-transition: all 0.2s ease;
+            transition: all 0.2s ease;
+  }
+
+  button:hover {
+    top: -10px;
+    box-shadow: 0px 10px 10px rgba( 15, 165, 60, 0.2 );
+    
+    -webkit-transform: rotateX(20deg);
+      -moz-transform: rotateX(20deg);
+        -ms-transform: rotateX(20deg);
+            transform: rotateX(20deg);
+  }
 </style>

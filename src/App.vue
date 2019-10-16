@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <a name="top"></a>
     <nav id="nav">
       <router-link to="/" class="nav-links">Home</router-link>
       <router-link to="/categories" class="nav-links">Categories</router-link>
@@ -7,6 +8,7 @@
       <span id="headline">The Meal Planner</span>
     </nav>
     <div class="main">
+      <div class="buffer"></div>
     <router-view/>
     </div>
     <footer>
@@ -39,7 +41,7 @@
     font-weight: 700;
     font-size: 48px;
     position: relative;
-    right: 160px;
+    right: 200px;
   }
   a {
     float: left;
@@ -57,9 +59,12 @@
     color: white;
   }  
 }
+
+.buffer{
+  padding: 60px;
+}
 .main {
-  margin-top: 150px;
-  margin-bottom: 150px;
+  margin-bottom: 70px;
 }
 
 footer {
