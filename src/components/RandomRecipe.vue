@@ -1,19 +1,34 @@
 <template>
   <div class="recipe">
-    <a name="top"><h1>Today's meal:</h1></a>
-    <h3>{{ recipe.title }}</h3>
-    <img :src="recipe.image"/>
-    <p> <strong> Category:</strong> {{ recipe.category }}</p>
-    <P><strong>Ingredients:</strong></P>
-    <ul>
-      <li v-for="ingridient in recipe.ingredients" v-bind:key="ingridient.index">
-        {{ ingridient }}
-      </li>
-    </ul>
-    <div> <strong> Instruction: </strong>{{ recipe.instructions }}</div>
-    <a href="#top"> 
+
+    <div class="title">
+      <h1>Today's meal:</h1>
+      <h3>{{ recipe.title }}</h3>
+    </div>
+
+    <div class="category-ingredients">
+      <div class="image-category">
+        <p> <img class="recipe-image" :src="recipe.image"/> </p>   
+        <p> <strong> Category:</strong> {{ recipe.category }} </p>
+      </div>
+        <div class="ingridients">
+        <P><strong> Ingredients: </strong></P>
+        <ul>
+          <li v-for="ingridient in recipe.ingredients" v-bind:key="ingridient.index">
+            {{ ingridient }}
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="instructions"> 
+      <strong> Instruction: </strong> {{ recipe.instructions }}
+    </div>
+
+    <a href="#top" class="extra"> 
       <button @click="onClick"> Show me another random recipe </button>
     </a>
+
   </div>
 </template>
 
@@ -69,8 +84,8 @@ export default class RandomRecipe extends Vue {
     .catch( (error) => {
       // console.log(error);
     });
-
   }
+
   public mounted() {
     this.getMeal();
   }
@@ -82,15 +97,7 @@ export default class RandomRecipe extends Vue {
 </script>
 
 <style scoped lang="scss">
-  img {
-    width: 20%;
-  }
 
-  ul {
-    list-style: none;
-  }
-
-/* Reset */
 button {
   background: transparent;
   border: 0;
@@ -101,7 +108,7 @@ button {
   margin:35px;
 }
 
-/* Custom */
+
 button {
   display: inline-block;
   position: relative;

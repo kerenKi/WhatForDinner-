@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <a name="top"></a>
     <nav id="nav">
       <router-link to="/" class="nav-links">Home</router-link>
       <router-link to="/categories" class="nav-links">Categories</router-link>
@@ -7,6 +8,7 @@
       <span id="headline">The Meal Planner</span>
     </nav>
     <div class="main">
+      <div class="buffer"></div>
     <router-view/>
     </div>
     <footer>
@@ -19,6 +21,7 @@
 
 <style lang="scss">
   @import url('https://fonts.googleapis.com/css?family=Fira+Sans+Condensed&display=swap');
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -26,6 +29,7 @@
   text-align: center;
   color: #2c3e50;
 }
+
 #nav {
   padding: 30px;
   position: fixed;
@@ -39,7 +43,7 @@
     font-weight: 700;
     font-size: 48px;
     position: relative;
-    right: 160px;
+    right: 200px;
   }
   a {
     float: left;
@@ -57,9 +61,13 @@
     color: white;
   }  
 }
+
+.buffer{
+  padding: 60px;
+}
+
 .main {
-  margin-top: 150px;
-  margin-bottom: 150px;
+  margin-bottom: 70px;
 }
 
 footer {
@@ -69,7 +77,15 @@ footer {
   width: 100%;
   display: flex;
   justify-content: center;
+}
 
+a {
+    text-decoration: none;
+    color: rgb(63, 63, 63);
+}
+
+ul {
+    list-style: none;
 }
 
 .cards-container {
@@ -82,7 +98,7 @@ img {
     border-radius: 3px;
     position: relative;
     bottom: 17px;
-  }
+}
 
 .card {
     transition: all .4s cubic-bezier(0.175, 0.885, 0, 1);
@@ -101,7 +117,7 @@ img {
     h4 {
       padding: 10px;
       position: relative;
-      bottom: 20px;
+      bottom: 35px;
       font-family: 'Fira Sans Condensed', sans-serif;
     }
 }
@@ -118,6 +134,58 @@ img {
     position: relative;
     opacity: 1;
     cursor: pointer;
+}
+
+.recipe {
+  display: grid;
+  grid-template-areas:
+    '. title title .'
+    'category-ingredients category-ingredients instruction instruction'
+    'extra extra extra extra';
+}
+
+.title {
+  grid-area: title;
+  grid-column: 1 / span 4;
+  grid-row: 1;
+  justify-content: center; 
+
+}
+
+.category-ingredients {
+  grid-area: category-ingredients;
+  padding: 15px;
+  display: grid;
+  grid-template-areas:
+    'image-category ingredients'
+    '. ingredients';
+}
+
+.image-category {
+  grid-area: image-category;
+  padding: 20px;
+  img {
+    width: 300px;
+    height: 350px;
+    padding: 10px;
+    background-color: rgb(200, 214, 200);
+  }
+}
+
+.ingredients {
+  grid-area: ingredients;
+  padding: 10px;
+  background-color: rgb(200, 214, 200);
+}
+
+.instructions {
+  grid-area: instruction;
+  padding: 30px;
+  justify-content: center;
+}
+
+.extra {
+  grid-area: extra;
 }
 
 </style>

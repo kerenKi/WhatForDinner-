@@ -32,6 +32,7 @@ export default class CategoriesList extends Vue {
 </script>
 
 <style scoped lang="scss">
+
   a {
   display: flex;
   justify-content: center;
@@ -46,7 +47,6 @@ export default class CategoriesList extends Vue {
   margin-left:60px;
   font-size: 18px;
   font-weight: 700;
-
 }
 
 a:hover {

@@ -1,6 +1,8 @@
 <template>
   <div class="recipes-by-category" >
+
     <h1>{{this.$route.params.category}} recipes </h1>
+      
       <section class="cards-container">
         <div v-for="recipe in recipes" :key="recipe.id" >
           <article class="card">
@@ -15,6 +17,7 @@
           </article>  
         </div>
       </section>
+
   </div>
 </template>
 
@@ -52,11 +55,5 @@ export default class RecipesByCategory extends Vue {
 </script>
 
 <style scoped lang="scss">
-  img {
-    width: 20%;
-  }
 
-  ul {
-    list-style: none;
-  }
 </style>
