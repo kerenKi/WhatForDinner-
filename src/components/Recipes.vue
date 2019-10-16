@@ -26,7 +26,7 @@
     <section v-if="selected == ''" class="cards-container">
       <div v-for="option in moreRecipes" :key="option.id">
         <article class="card">
-          <a @click="goToRecipe(option.id)" >
+          <a @click="goToRecipe(option.id)" href="#top">
             <div class="flex-container">
               <p><img :src="option.image" style="width:100%"/></p>
                 <h4 class="grid-item">
