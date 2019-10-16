@@ -1,6 +1,8 @@
 <template>
   <div class="recipes" >
+
     <h3>Sort By Category</h3>
+
     <div class="custom-select">
       <select name="category"  v-model="selected" @change="getMealsByCategory(selected)">
         <option value="">Pick a category</option>
@@ -19,21 +21,22 @@
         <option value="vegan">Vegan</option>
         <option value="vegetarian">Vegetarian</option>
       </select>
-    </div>  
-      <section v-if="selected == ''" class="cards-container">
-        <div v-for="option in moreRecipes" :key="option.id">
-          <article class="card">
-            <a @click="goToRecipe(option.id)" >
-              <div class="flex-container">
-                <p><img :src="option.image" style="width:100%"/></p>
-                  <h4 class="grid-item">
-                      {{ option.title }}
-                  </h4>
-              </div> 
-            </a>
-          </article>
-        </div>
-      </section>
+    </div>
+
+    <section v-if="selected == ''" class="cards-container">
+      <div v-for="option in moreRecipes" :key="option.id">
+        <article class="card">
+          <a @click="goToRecipe(option.id)" >
+            <div class="flex-container">
+              <p><img :src="option.image" style="width:100%"/></p>
+                <h4 class="grid-item">
+                    {{ option.title }}
+                </h4>
+            </div> 
+          </a>
+        </article>
+      </div>
+    </section>
 
   </div>
 </template>
