@@ -6,7 +6,7 @@
       <section class="cards-container">
         <div v-for="recipe in recipes" :key="recipe.id" >
           <article class="card">
-            <a @click="goToRecipe(recipe.id)">
+            <a @click="goToRecipe(recipe.id)" href="#top">
               <div class="flex-container">
                 <p><img :src="recipe.image" style="width:100%"/></p>            
                 <h4>

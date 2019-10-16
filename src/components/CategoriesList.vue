@@ -1,7 +1,7 @@
 <template>
   <div class="categories-list" >
     <div class="categories" v-for="categorie in categories" v-bind:key="categorie.index">  
-      <a @click="goToCategory(categorie.strCategory)">{{ categorie.strCategory }}</a>
+      <a @click="goToCategory(categorie.strCategory)" href="#top">{{ categorie.strCategory }}</a>
     </div>
   </div>
 </template>
