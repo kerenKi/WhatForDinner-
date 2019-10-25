@@ -66,20 +66,12 @@ export default class RecipeDetails extends Vue {
       mealApi.get(`filter.php?c=${this.recipe.category}`)
       .then((response) => {
         const meals = response.data.meals;
-        const pool = meals.length;
-        function random(): number {
-          return Math.floor(Math.random() * pool);
-        }
-        // Creating a uniqe set of random numbers
-        const randomSet: Set<number> = new Set([random(), random(), random(), random(), random(), random()]);
-
-        const randomArray: number[] = Array.from(randomSet);
         for (let i = 0; i < 3; i++) {
-          const randomNumber: number = randomArray[i];
+          const meal = meals.splice(Math.floor(Math.random() * meals.length), 1);
           const mealTeaser = {
-            id: response.data.meals[randomNumber].idMeal,
-            title: response.data.meals[randomNumber].strMeal,
-            image: response.data.meals[randomNumber].strMealThumb,
+            id: meal[0].idMeal,
+            title: meal[0].strMeal,
+            image: meal[0].strMealThumb,
           };
           this.moreRecipes.push(mealTeaser);
         }

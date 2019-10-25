@@ -47,7 +47,7 @@ export default class RandomRecipe extends Vue {
     ingredients: [],
   };
 
-  public getMeal() {
+  public getMeal(): void {
     const self = this;
     mealApi.get('random.php')
     .then((response) => {
