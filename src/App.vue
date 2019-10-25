@@ -190,8 +190,10 @@ img {
 
 .ingredients {
   grid-area: ingredients;
-  padding: 10px;
-  background-color: rgb(200, 214, 200);
+  ul {
+    justify-content: left;
+    padding-right: 35px;
+  }
 }
 
 .instructions {

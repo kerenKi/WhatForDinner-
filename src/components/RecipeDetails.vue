@@ -11,11 +11,11 @@
         <p><img :src="recipe.image"/></p>
         <p> <strong> Category:</strong> {{ recipe.category }}</p>
       </div>
-      <div class="ingridients">
+      <div class="ingredients">
         <P><strong>Ingredients:</strong></P>
         <ul>
-          <li v-for="ingridient in recipe.ingredients" :key="ingridient.index">
-            {{ ingridient }}
+          <li v-for="ingredient in recipe.ingredients" :key="ingredient.index">
+            {{ ingredient }}
           </li>
         </ul>
       </div>
@@ -52,7 +52,13 @@ import { RecipeTeaser } from '../models/recipesTeaser';
 
 @Component
 export default class RecipeDetails extends Vue {
-  public recipe: Recipe = {};
+  public recipe: Recipe = {
+    title: '',
+    category: '',
+    instructions: '',
+    image: '',
+    ingredients: [],
+  };
 
   public moreRecipes: RecipeTeaser[] = [];
 
@@ -80,34 +86,26 @@ export default class RecipeDetails extends Vue {
     mealApi.get(`lookup.php?i=${this.$route.params.id}`)
     .then((response) => {
       const meal = response.data.meals[0];
+
+      /* the structure of the meal API contains 20 keys named strIngredient(1-20).
+      In this part i'm parsing through the ingrediens and bulding the full ingredients array */
+      const ingredientsArray = [];
+      let endOfIngredient = false;
+      for ( let i = 1; i < 20 && !endOfIngredient; i++) {
+        const ingredient = `strIngredient${i}`;
+        if (meal[ingredient] !== '') {
+          ingredientsArray.push(meal[ingredient]);
+        } else {
+          endOfIngredient = true;
+        }
+      }
+
+      // constructing the recipe object
       self.recipe.title = meal.strMeal;
       self.recipe.category = meal.strCategory;
       self.recipe.instructions = meal.strInstructions;
       self.recipe.image = meal.strMealThumb;
-      self.recipe.ingredients = [
-        meal.strIngredient1,
-        meal.strIngredient2,
-        meal.strIngredient3,
-        meal.strIngredient4,
-        meal.strIngredient5,
-        meal.strIngredient6,
-        meal.strIngredient7,
-        meal.strIngredient8,
-        meal.strIngredient9,
-        meal.strIngredient10,
-        meal.strIngredient11,
-        meal.strIngredient12,
-        meal.strIngredient13,
-        meal.strIngredient14,
-        meal.strIngredient15,
-        meal.strIngredient16,
-        meal.strIngredient17,
-        meal.strIngredient18,
-        meal.strIngredient19,
-        meal.strIngredient20,
-        ];
-      self.recipe.ingredients = self.recipe.ingredients.filter( (ingridient) => ingridient !== ''
-      && ingridient !== null);
+      self.recipe.ingredients = ingredientsArray;
       this.getCategory();
     })
     .catch( (error) => {

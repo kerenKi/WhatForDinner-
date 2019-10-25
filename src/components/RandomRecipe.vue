@@ -11,13 +11,13 @@
         <p> <img class="recipe-image" :src="recipe.image"/> </p>   
         <p> <strong> Category:</strong> {{ recipe.category }} </p>
       </div>
-        <div class="ingridients">
-        <P><strong> Ingredients: </strong></P>
-        <ul>
-          <li v-for="ingridient in recipe.ingredients" v-bind:key="ingridient.index">
-            {{ ingridient }}
-          </li>
-        </ul>
+        <div class="ingredients">
+          <P><strong> Ingredients: </strong></P>
+          <ul>
+            <li v-for="ingredient in recipe.ingredients" v-bind:key="ingredient.index">
+              {{ ingredient }}
+            </li>
+          </ul>
       </div>
     </div>
 
@@ -78,8 +78,8 @@ export default class RandomRecipe extends Vue {
         meal.strIngredient19,
         meal.strIngredient20,
         ];
-      self.recipe.ingredients = self.recipe.ingredients.filter( (ingridient) => ingridient !== ''
-      && ingridient !== null);
+      self.recipe.ingredients = self.recipe.ingredients.filter( (ingredient) => ingredient !== ''
+      && ingredient !== null);
     })
     .catch( (error) => {
       // console.log(error);
