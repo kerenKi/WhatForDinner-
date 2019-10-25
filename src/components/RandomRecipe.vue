@@ -99,17 +99,11 @@ export default class RandomRecipe extends Vue {
 <style scoped lang="scss">
 
 button {
-  background: transparent;
   border: 0;
-  padding: 0;
   cursor: pointer;
   outline: 0;
   -webkit-appearance: none;
   margin:35px;
-}
-
-
-button {
   display: inline-block;
   position: relative;
   padding: 20px 38px;

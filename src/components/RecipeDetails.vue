@@ -27,7 +27,7 @@
 
     <div class="extra">
       <h1 > More from the {{ recipe.category }} category:</h1>
-      <section class="cards-container">
+      <section class="more-recipes-container">
         <div v-for="option in moreRecipes" :key="option.id">
           <article class="card">
             <a @click="goToRecipe(option.id)" href="#top">
@@ -52,13 +52,7 @@ import { RecipeTeaser } from '../models/recipesTeaser';
 
 @Component
 export default class RecipeDetails extends Vue {
-  public recipe: Recipe = {
-    title: '',
-    category: '',
-    instructions: '',
-    image: '',
-    ingredients: [],
-  };
+  public recipe: Recipe = {};
 
   public moreRecipes: RecipeTeaser[] = [];
 
@@ -135,9 +129,9 @@ export default class RecipeDetails extends Vue {
 
 <style scoped lang="scss">
   
-.cards-container {
+.more-recipes-container {
   position: relative;
-  left: 250px;
+  left: 290px;
 }
 
 </style>
