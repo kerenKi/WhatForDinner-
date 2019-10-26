@@ -15,6 +15,7 @@
     </div>
     <footer>
       <div>
+        <router-link to="/sitemap.xml">Our Site Map</router-link>
         <p> Made with ❤️, &#x3C; &#x3E; and ☕ </p>
       </div>
     </footer>
