@@ -49,6 +49,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 import { mealApi } from '../api';
 import { Recipe } from '../models/recipe';
 import { RecipeTeaser } from '../models/recipesTeaser';
+import constructRecipeFromAPIResponse from '../helpers';
 
 @Component
 export default class RecipeDetails extends Vue {
@@ -86,26 +87,8 @@ export default class RecipeDetails extends Vue {
     mealApi.get(`lookup.php?i=${this.$route.params.id}`)
     .then((response) => {
       const meal = response.data.meals[0];
-
-      /* the structure of the meal API contains 20 keys named strIngredient(1-20).
-      In this part i'm parsing through the ingrediens and bulding the full ingredients array */
-      const ingredientsArray = [];
-      let endOfIngredient = false;
-      for ( let i = 1; i < 20 && !endOfIngredient; i++) {
-        const ingredient = `strIngredient${i}`;
-        if (meal[ingredient] !== '') {
-          ingredientsArray.push(meal[ingredient]);
-        } else {
-          endOfIngredient = true;
-        }
-      }
-
-      // constructing the recipe object
-      self.recipe.title = meal.strMeal;
-      self.recipe.category = meal.strCategory;
-      self.recipe.instructions = meal.strInstructions;
-      self.recipe.image = meal.strMealThumb;
-      self.recipe.ingredients = ingredientsArray;
+      const fullRecipe = constructRecipeFromAPIResponse(meal);
+      self.recipe = fullRecipe;
       this.getCategory();
     })
     .catch( (error) => {

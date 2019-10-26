@@ -36,6 +36,7 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { mealApi } from '../api';
 import { Recipe } from '../models/recipe';
+import constructRecipeFromAPIResponse from '../helpers';
 
 @Component
 export default class RandomRecipe extends Vue {
@@ -52,34 +53,8 @@ export default class RandomRecipe extends Vue {
     mealApi.get('random.php')
     .then((response) => {
       const meal = response.data.meals[0];
-      self.recipe.title = meal.strMeal;
-      self.recipe.category = meal.strCategory;
-      self.recipe.instructions = meal.strInstructions;
-      self.recipe.image = meal.strMealThumb;
-      self.recipe.ingredients = [
-        meal.strIngredient1,
-        meal.strIngredient2,
-        meal.strIngredient3,
-        meal.strIngredient4,
-        meal.strIngredient5,
-        meal.strIngredient6,
-        meal.strIngredient7,
-        meal.strIngredient8,
-        meal.strIngredient9,
-        meal.strIngredient10,
-        meal.strIngredient11,
-        meal.strIngredient12,
-        meal.strIngredient13,
-        meal.strIngredient14,
-        meal.strIngredient15,
-        meal.strIngredient16,
-        meal.strIngredient17,
-        meal.strIngredient18,
-        meal.strIngredient19,
-        meal.strIngredient20,
-        ];
-      self.recipe.ingredients = self.recipe.ingredients.filter( (ingredient) => ingredient !== ''
-      && ingredient !== null);
+      const fullRecipe = constructRecipeFromAPIResponse(meal);
+      self.recipe = fullRecipe;
     })
     .catch( (error) => {
       // console.log(error);
