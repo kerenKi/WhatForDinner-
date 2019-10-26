@@ -1,12 +1,13 @@
 <template>
   <div class="categories-list" >
     <div class="categories" v-for="categorie in categories" v-bind:key="categorie.index">  
-      <a @click="goToCategory(categorie.strCategory)" href="#top">{{ categorie.strCategory }}</a>
+      <a class="category-link" @click="goToCategory(categorie.strCategory)" href="#top">{{ categorie.strCategory }}</a>
     </div>
   </div>
 </template>
 
 <script lang="ts">
+
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { mealApi } from '../api';
 
@@ -33,12 +34,13 @@ export default class CategoriesList extends Vue {
 
 <style scoped lang="scss">
 
-  a {
+  .category-link {
   display: flex;
   justify-content: center;
   float: left;
   width: 40%;
   height: 30px;
+  text-decoration: none;
   background-color: rgba(68, 109, 96, 0.9);
   color: white;
   border-radius: 5px;
@@ -49,10 +51,8 @@ export default class CategoriesList extends Vue {
   font-weight: 700;
 }
 
-a:hover {
+.category-link:hover {
   cursor: pointer;
   background-color: rgba(102, 159, 141, 0.9);
-
 }
-
 </style>

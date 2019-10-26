@@ -2,9 +2,11 @@
   <div id="app">
     <a name="top"></a>
     <nav id="nav">
-      <router-link to="/" class="nav-links">Home</router-link>
-      <router-link to="/categories" class="nav-links">Categories</router-link>
-      <router-link to="/random" class="nav-links">Random</router-link>
+      <div class="nav-buttons">
+        <router-link to="/" class="nav-links">Home</router-link>
+        <router-link to="/categories" class="nav-links">Categories</router-link>
+        <router-link to="/random" class="nav-links">Random</router-link>
+      </div>
       <span id="headline">The Meal Planner</span>
     </nav>
     <div class="main">
@@ -12,8 +14,8 @@
     <router-view/>
     </div>
     <footer>
-      <div >
-        <p>Made with ❤️, &#x3C; &#x3E; and ☕ </p>
+      <div>
+        <p> Made with ❤️, &#x3C; &#x3E; and ☕ </p>
       </div>
     </footer>
   </div>
@@ -28,22 +30,34 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  display: grid;
+  grid-template-areas: 
+  'navbar'
+  'main'
+  'footer'; 
 }
 
 #nav {
+  grid-area: navbar;
   padding: 30px;
   position: fixed;
   top: 0;
+  display: grid;
+  grid-template-areas:'nav-buttons headline .';
   margin-bottom: 20px; 
   width: 100%;
   background-color: rgba(132, 201, 178, 0.9);
   z-index:99999;
   #headline {
+    grid-area: headline;
     color: #2c3e50;
     font-weight: 700;
     font-size: 48px;
     position: relative;
     right: 200px;
+  }
+  .nav-buttons {
+    grid-area: nav-buttons;
   }
   a {
     float: left;
@@ -67,10 +81,12 @@
 }
 
 .main {
+  grid-area: main;
   margin-bottom: 70px;
 }
 
 footer {
+  grid-area: footer;
   padding: 30px;
   background-color: rgba(132, 201, 178, 0.9);
   text-align: center;
@@ -174,8 +190,10 @@ img {
 
 .ingredients {
   grid-area: ingredients;
-  padding: 10px;
-  background-color: rgb(200, 214, 200);
+  ul {
+    justify-content: left;
+    padding-right: 35px;
+  }
 }
 
 .instructions {

@@ -11,13 +11,13 @@
         <p> <img class="recipe-image" :src="recipe.image"/> </p>   
         <p> <strong> Category:</strong> {{ recipe.category }} </p>
       </div>
-        <div class="ingridients">
-        <P><strong> Ingredients: </strong></P>
-        <ul>
-          <li v-for="ingridient in recipe.ingredients" v-bind:key="ingridient.index">
-            {{ ingridient }}
-          </li>
-        </ul>
+        <div class="ingredients">
+          <P><strong> Ingredients: </strong></P>
+          <ul>
+            <li v-for="ingredient in recipe.ingredients" v-bind:key="ingredient.index">
+              {{ ingredient }}
+            </li>
+          </ul>
       </div>
     </div>
 
@@ -36,6 +36,7 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { mealApi } from '../api';
 import { Recipe } from '../models/recipe';
+import constructRecipeFromAPIResponse from '../helpers';
 
 @Component
 export default class RandomRecipe extends Vue {
@@ -47,39 +48,13 @@ export default class RandomRecipe extends Vue {
     ingredients: [],
   };
 
-  public getMeal() {
+  public getMeal(): void {
     const self = this;
     mealApi.get('random.php')
     .then((response) => {
       const meal = response.data.meals[0];
-      self.recipe.title = meal.strMeal;
-      self.recipe.category = meal.strCategory;
-      self.recipe.instructions = meal.strInstructions;
-      self.recipe.image = meal.strMealThumb;
-      self.recipe.ingredients = [
-        meal.strIngredient1,
-        meal.strIngredient2,
-        meal.strIngredient3,
-        meal.strIngredient4,
-        meal.strIngredient5,
-        meal.strIngredient6,
-        meal.strIngredient7,
-        meal.strIngredient8,
-        meal.strIngredient9,
-        meal.strIngredient10,
-        meal.strIngredient11,
-        meal.strIngredient12,
-        meal.strIngredient13,
-        meal.strIngredient14,
-        meal.strIngredient15,
-        meal.strIngredient16,
-        meal.strIngredient17,
-        meal.strIngredient18,
-        meal.strIngredient19,
-        meal.strIngredient20,
-        ];
-      self.recipe.ingredients = self.recipe.ingredients.filter( (ingridient) => ingridient !== ''
-      && ingridient !== null);
+      const fullRecipe = constructRecipeFromAPIResponse(meal);
+      self.recipe = fullRecipe;
     })
     .catch( (error) => {
       // console.log(error);
@@ -99,17 +74,11 @@ export default class RandomRecipe extends Vue {
 <style scoped lang="scss">
 
 button {
-  background: transparent;
   border: 0;
-  padding: 0;
   cursor: pointer;
   outline: 0;
   -webkit-appearance: none;
   margin:35px;
-}
-
-
-button {
   display: inline-block;
   position: relative;
   padding: 20px 38px;
