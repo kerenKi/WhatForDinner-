@@ -3,6 +3,7 @@ import Router from 'vue-router';
 import Home from './views/Home.vue';
 import RecipeDetails from '../src/components/RecipeDetails.vue';
 import RecipesByCategory from '../src/components/RecipesByCategory.vue';
+import Sitemap from '../src/views/Sitemap.vue';
 
 Vue.use(Router);
 
@@ -38,6 +39,11 @@ const router: Router = new Router({
       path: '/recipes/:category',
       name: '/recipesByCategory',
       component: RecipesByCategory,
+    },
+    {
+      path: '/sitemap.xml',
+      name: 'sitemap',
+      component: Sitemap,
     },
   ],
 });

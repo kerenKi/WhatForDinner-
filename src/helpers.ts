@@ -1,6 +1,6 @@
 import { Recipe } from './models/recipe';
 
-export default function constructRecipeFromAPIResponse(meal): Recipe {
+export default function constructRecipeFromAPIResponse(meal: any): Recipe {
   /* the structure of the meal API contains 20 keys named strIngredient(1-20).
   In this part i'm parsing through the ingredients and building the full ingredients array */
   const ingredientsArray = [];
