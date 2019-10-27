@@ -5,7 +5,7 @@
 
     <div class="extra">
       <h1 > More from the {{ recipe.category }} category:</h1>
-      <section class="more-recipes-container">
+      <div class="more-recipes-container">
         <div v-for="option in moreRecipes" :key="option.id">
           <article class="card">
             <a @click="goToRecipe(option.id)" href="#top">
@@ -16,7 +16,7 @@
             </a>
           </article>  
         </div>
-      </section>
+      </div>
     </div>
 
   </div>
@@ -93,17 +93,5 @@ export default class RecipeDetails extends Vue {
 </script>
 
 <style scoped lang="scss">
-  
-.more-recipes-container {
-  position: relative;
-  left: 260px;
-}
-
-@media screen and (max-width: 780px) {
-  .more-recipes-container {
-    position: relative;
-    left: 20px;
-  }
-}
 
 </style>

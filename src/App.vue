@@ -2,12 +2,13 @@
   <div id="app">
     <a name="top"></a>
     <nav id="nav">
+      <span id="headline">The Meal Planner</span>
+
       <div class="nav-buttons">
         <router-link  to="/" class="nav-links">Home</router-link>
         <router-link  to="/categories" class="nav-links">Categories</router-link>
         <router-link  to="/random" class="nav-links">Random</router-link>
       </div>
-      <span id="headline">The Meal Planner</span>
     </nav>
 
     <div class="main">
@@ -43,7 +44,7 @@
 
 #nav {
   grid-area: navbar;
-  padding: 2%;
+  padding: 1.5%;
   position: fixed;
   top: 0;
   display: grid;
@@ -83,13 +84,15 @@
 }
 
 .main {
+  width: 100%;
   grid-area: main;
-  margin-top: 130px;
+  margin-top: 140px;
   margin-bottom: 70px;
 }
 
 footer {
   grid-area: footer;
+  margin: auto;
   padding: 30px;
   background-color: rgba(132, 201, 178, 0.9);
   text-align: center;
@@ -142,20 +145,18 @@ img {
 }
 
 .card:hover {
-  box-shadow: 0px 30px 18px -8px rgba(0, 0, 0,0.1);
-    transform: scale(1.10, 1.10);
-}
-
-.card:hover {
     height: 200px;;
     opacity: 0.3;
     background-color: transparent;
     position: relative;
     opacity: 1;
     cursor: pointer;
+    box-shadow: 0px 30px 18px -8px rgba(0, 0, 0,0.1);
+    transform: scale(1.10, 1.10);
 }
 
 .recipe {
+  width:100%;
   display: grid;
   grid-template-areas:
     '. title title .'
@@ -207,46 +208,66 @@ img {
 
 .extra {
   grid-area: extra;
+  margin: auto;
+  width: 60%;
 }
 
 /* Media Queries */
-@media screen and (max-width: 780px) {
-  #nav {
-    display: grid;
-    grid-template-areas:
-    'nav-buttons headline '
-    'nav-buttons headline '
-    'nav-buttons headline ';
-    padding: 15px;
 
+/* Tablets */
+@media screen and (max-width: 770px) {
+  #nav {
     #headline {
-      grid-area: headline;
-      font-size: 25px;
-      padding:15px;
-      margin:20px;
-      justify-content: center;
-      position:relative;
-      right:150px;
+      width: 100%;
+      margin: 10px auto 0;
+      font-size: 35px;
+      
     }
     .nav-buttons {
-      grid-area: nav-buttons;
-      height: 100px;
       width:40%;
-      display: block;
     }
     a {
-      display: block;
+      display: inline;
       font-size: 16px;
-      padding: 5px;
     }
   }
 
+  .main {
+    margin-top: 160px;
+  }
   .recipe {
     width:100%;
   }
+  .extra {
+    width: 100%;
+  }
+
 }
 
-/* Mobile Devices */
-@media screen and (max-width: 400px) {
+/* Mobiles */
+@media screen and (max-width: 480px) {
+  #nav {
+    #headline {
+      width: 80%;
+      padding: 0.5%;
+      margin: 30px 0px 0 200px;
+      font-size: 35px;
+      
+    }
+    .nav-buttons {
+      width:40%;
+    }
+    a {
+      display: inline;
+      font-size: 16px;
+    }
+  }
+  .recipe {
+    width:50%;
+  }
+
+  .extra {
+    width: 100%;
+  }
 }
 </style>
