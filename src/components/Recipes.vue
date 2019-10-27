@@ -55,7 +55,7 @@ export default class Recipes extends Vue {
 
   public mealsSet = new Set();
 
-  public compare( a: object, b: object ) {
+  public compare( a: any, b: any ) {
   if ( a.title < b.title ) {
     return -1;
   }
@@ -70,7 +70,7 @@ export default class Recipes extends Vue {
     this.recipes = sortAToZ;
   }
 
-  public reverseCompare( a: object, b: object ) {
+  public reverseCompare( a: any, b: any ) {
   if ( a.title > b.title ) {
     return -1;
   }
