@@ -3,9 +3,9 @@
     <a name="top"></a>
     <nav id="nav">
       <div class="nav-buttons">
-        <router-link to="/" class="nav-links">Home</router-link>
-        <router-link to="/categories" class="nav-links">Categories</router-link>
-        <router-link to="/random" class="nav-links">Random</router-link>
+        <router-link  to="/" class="nav-links">Home</router-link>
+        <router-link  to="/categories" class="nav-links">Categories</router-link>
+        <router-link  to="/random" class="nav-links">Random</router-link>
       </div>
       <span id="headline">The Meal Planner</span>
     </nav>
@@ -26,6 +26,8 @@
   @import url('https://fonts.googleapis.com/css?family=Fira+Sans+Condensed&display=swap');
 
 #app {
+  width: 100%;
+  height: auto;
   margin:auto;
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -109,6 +111,10 @@
       font-size: 16px;
       padding: 5px;
     }
+  }
+
+  .recipe {
+    width:100%;
   }
 }
 
