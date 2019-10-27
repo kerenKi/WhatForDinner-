@@ -112,7 +112,14 @@ export default class RecipeDetails extends Vue {
   
 .more-recipes-container {
   position: relative;
-  left: 290px;
+  left: 20vw;
+}
+
+@media screen and (max-width: 780px) {
+  .more-recipes-container {
+    position: relative;
+    left: 20px;
+  }
 }
 
 </style>

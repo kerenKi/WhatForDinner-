@@ -21,8 +21,8 @@
       </select>
     </div>
 
-    <h3 class="sorting" @click="sortFromAToZ()">Sort from A - Z</h3>
-    <h3 class="sorting" @click="sortFromZToA()">Sort from Z - A</h3>
+    <p class="sorting" @click="sortFromAToZ()">Sort from A - Z</p>
+    <p class="sorting" @click="sortFromZToA()">Sort from Z - A</p>
 
     <section v-if="selected == ''" class="cards-container">
       <div v-for="option in recipes" :key="option.id">
