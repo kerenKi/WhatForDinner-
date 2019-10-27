@@ -1,29 +1,7 @@
 <template>
   <div class="recipe">
 
-    <div class="title">
-      <h1>Today's meal:</h1>
-      <h3>{{ recipe.title }}</h3>
-    </div>
-
-    <div class="category-ingredients">
-      <div class="image-category">
-        <p><img :src="recipe.image"/></p>
-        <p> <strong> Category:</strong> {{ recipe.category }}</p>
-      </div>
-      <div class="ingredients">
-        <P><strong>Ingredients:</strong></P>
-        <ul>
-          <li v-for="ingredient in recipe.ingredients" :key="ingredient.index">
-            {{ ingredient }}
-          </li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="instructions"> 
-      <strong> Instructions: </strong>{{ recipe.instructions }}
-    </div>
+    <RecipeBase :recipe="recipe"/>
 
     <div class="extra">
       <h1 > More from the {{ recipe.category }} category:</h1>
@@ -50,9 +28,15 @@ import { mealApi } from '../api';
 import { Recipe } from '../models/recipe';
 import { RecipeTeaser } from '../models/recipesTeaser';
 import constructRecipeFromAPIResponse from '../helpers';
+import RecipeBase from './RecipeBase.vue';
 
-@Component
+@Component({
+  components: {
+    RecipeBase,
+  },
+})
 export default class RecipeDetails extends Vue {
+
   public recipe: Recipe = {
     title: '',
     category: '',
@@ -111,8 +95,9 @@ export default class RecipeDetails extends Vue {
 <style scoped lang="scss">
   
 .more-recipes-container {
-  position: relative;
-  left: 20vw;
+  width: 80%;
+  // position: relative;
+  // left: 20vw;
 }
 
 @media screen and (max-width: 780px) {

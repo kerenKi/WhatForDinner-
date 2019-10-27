@@ -95,7 +95,7 @@ export default class Recipes extends Vue {
           return true;
         } else {
           this.mealsSet.add(response.data.meals[0].idMeal);
-          const mealTeaser = {
+          const mealTeaser: RecipeTeaser = {
               id: response.data.meals[0].idMeal,
               title: response.data.meals[0].strMeal,
               image: response.data.meals[0].strMealThumb,
