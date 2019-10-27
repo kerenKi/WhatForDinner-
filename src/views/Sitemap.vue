@@ -10,17 +10,17 @@ import router from '../router';
 
 @Component
 export default class Sitemap extends Vue {
-  public list: string = 'hello';
+  public list: string = '';
 
-  public getRoutesList(routes, pre) {
-    return routes.reduce( (array, route) => {
+  public getRoutesList(routes: any, pre: string) {
+    return routes.reduce( (array: string[], route: any) => {
       const path = `${pre}${route.path}`;
       if (route.path !== '*') {
       array.push(path);
     }
 
       if (route.children) {
-      array.push(...getRoutesList(route.children, `${path}/`));
+      array.push(...this.getRoutesList(route.children, `${path}/`));
     }
 
       return array;
@@ -29,7 +29,7 @@ export default class Sitemap extends Vue {
 
   public generateXMLMap() {
     const routesList = this.getRoutesList(router.options.routes, 'https://dinner-plans.netlify.com/')
-      .map((route) => `<url><loc>${route}</loc></url>`)
+      .map((route: string) => `<url><loc>${route}</loc></url>`)
       .join('\r\n');
     return `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
     ${routesList}

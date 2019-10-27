@@ -44,6 +44,7 @@ const router: Router = new Router({
       path: '/sitemap.xml',
       name: 'sitemap',
       component: Sitemap,
+      meta: { layout: 'empty' },
     },
   ],
 });
