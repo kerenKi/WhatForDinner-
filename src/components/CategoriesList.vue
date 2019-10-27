@@ -55,4 +55,12 @@ export default class CategoriesList extends Vue {
   cursor: pointer;
   background-color: rgba(102, 159, 141, 0.9);
 }
+
+@media screen and (max-width: 770px) {
+  
+  .category-link {
+    width: 30%;
+    margin: 20px;
+  }
+}
 </style>
