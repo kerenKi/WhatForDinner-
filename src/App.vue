@@ -15,7 +15,7 @@
     </div>
     <footer>
       <div>
-        <router-link to="/sitemap.xml">Our Site Map</router-link>
+        <router-link to="/sitemap">Our Site Map</router-link>
         <p> Made with ❤️, &#x3C; &#x3E; and ☕ </p>
       </div>
     </footer>
@@ -82,45 +82,9 @@
   }  
 }
 
-@media screen and (max-width: 780px) {
-  #nav {
-    display: grid;
-    grid-template-areas:
-    'nav-buttons headline '
-    'nav-buttons headline '
-    'nav-buttons headline ';
-    padding: 15px;
-
-    #headline {
-      grid-area: headline;
-      font-size: 25px;
-      padding:15px;
-      margin:20px;
-      justify-content: center;
-      position:relative;
-      right:150px;
-    }
-    .nav-buttons {
-      grid-area: nav-buttons;
-      height: 100px;
-      width:40%;
-      display: block;
-    }
-    a {
-      display: block;
-      font-size: 16px;
-      padding: 5px;
-    }
-  }
-
-  .recipe {
-    width:100%;
-  }
-}
-
 .main {
   grid-area: main;
-  margin-top: calc(13vw + 30px);
+  margin-top: 130px;
   margin-bottom: 70px;
 }
 
@@ -245,4 +209,44 @@ img {
   grid-area: extra;
 }
 
+/* Media Queries */
+@media screen and (max-width: 780px) {
+  #nav {
+    display: grid;
+    grid-template-areas:
+    'nav-buttons headline '
+    'nav-buttons headline '
+    'nav-buttons headline ';
+    padding: 15px;
+
+    #headline {
+      grid-area: headline;
+      font-size: 25px;
+      padding:15px;
+      margin:20px;
+      justify-content: center;
+      position:relative;
+      right:150px;
+    }
+    .nav-buttons {
+      grid-area: nav-buttons;
+      height: 100px;
+      width:40%;
+      display: block;
+    }
+    a {
+      display: block;
+      font-size: 16px;
+      padding: 5px;
+    }
+  }
+
+  .recipe {
+    width:100%;
+  }
+}
+
+/* Mobile Devices */
+@media screen and (max-width: 400px) {
+}
 </style>

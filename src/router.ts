@@ -41,10 +41,9 @@ const router: Router = new Router({
       component: RecipesByCategory,
     },
     {
-      path: '/sitemap.xml',
+      path: '/sitemap',
       name: 'sitemap',
       component: Sitemap,
-      meta: { layout: 'empty' },
     },
   ],
 });
