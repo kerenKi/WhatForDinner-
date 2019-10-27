@@ -1,11 +1,11 @@
 <template>
-    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+  <div>
       <ul>
           <li v-for="route in list" :key="route.index">
-            {{ route }}
+            <a :href="route">{{ route }}</a>
           </li>
       </ul>   
-    </urlset>
+  </div>
 </template>
 
 <script lang="ts">
@@ -31,15 +31,8 @@ export default class Sitemap extends Vue {
     }, []);
   }
 
-  public generateXMLMap() {
-    const routesList = this.getRoutesList(router.options.routes, 'https://dinner-plans.netlify.com/')
-      .map((route: string) => `<url><loc>${route}</loc></url>`);
-    return routesList;
-  }
-
   public mounted() {
-    const XMLList = this.generateXMLMap();
-    this.list = XMLList;
+    this.list = this.getRoutesList(router.options.routes, 'https://dinner-plans.netlify.com');
   }
 }
 </script>

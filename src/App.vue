@@ -15,7 +15,7 @@
     </div>
     <footer>
       <div>
-        <router-link to="/sitemap.xml">Our Site Map</router-link>
+        <router-link to="/sitemap">Our Site Map</router-link>
         <p> Made with ❤️, &#x3C; &#x3E; and ☕ </p>
       </div>
     </footer>
@@ -246,4 +246,7 @@ img {
   }
 }
 
+/* Mobile Devices */
+@media screen and (max-width: 400px) {
+}
 </style>
