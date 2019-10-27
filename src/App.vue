@@ -263,11 +263,18 @@ img {
     }
   }
   .recipe {
-    width:50%;
+    width:100%;
+    display: inline;
+    padding:1%;
+  }
+
+  .category-ingredients {
+    display: inline;
   }
 
   .extra {
-    width: 100%;
+    width: 66%;
+    
   }
 }
 </style>
