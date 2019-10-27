@@ -9,9 +9,9 @@
       </div>
       <span id="headline">The Meal Planner</span>
     </nav>
+
     <div class="main">
-      <div class="buffer"></div>
-    <router-view/>
+      <router-view/>
     </div>
     <footer>
       <div>
@@ -26,6 +26,7 @@
   @import url('https://fonts.googleapis.com/css?family=Fira+Sans+Condensed&display=swap');
 
 #app {
+  margin:auto;
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -40,25 +41,27 @@
 
 #nav {
   grid-area: navbar;
-  padding: 30px;
+  padding: 2%;
   position: fixed;
   top: 0;
   display: grid;
   grid-template-areas:'nav-buttons headline .';
-  margin-bottom: 20px; 
   width: 100%;
   background-color: rgba(132, 201, 178, 0.9);
   z-index:99999;
   #headline {
     grid-area: headline;
+    max-width: 70%;
     color: #2c3e50;
     font-weight: 700;
     font-size: 48px;
+    margin-left: 90px;
     position: relative;
     right: 200px;
   }
   .nav-buttons {
     grid-area: nav-buttons;
+    width: 70%;
   }
   a {
     float: left;
@@ -77,12 +80,41 @@
   }  
 }
 
-.buffer{
-  padding: 60px;
+@media screen and (max-width: 780px) {
+  #nav {
+    display: grid;
+    grid-template-areas:
+    'nav-buttons headline '
+    'nav-buttons headline '
+    'nav-buttons headline ';
+    padding: 15px;
+
+    #headline {
+      grid-area: headline;
+      font-size: 25px;
+      padding:15px;
+      margin:20px;
+      justify-content: center;
+      position:relative;
+      right:150px;
+    }
+    .nav-buttons {
+      grid-area: nav-buttons;
+      height: 100px;
+      width:40%;
+      display: block;
+    }
+    a {
+      display: block;
+      font-size: 16px;
+      padding: 5px;
+    }
+  }
 }
 
 .main {
   grid-area: main;
+  margin-top: calc(13vw + 30px);
   margin-bottom: 70px;
 }
 
