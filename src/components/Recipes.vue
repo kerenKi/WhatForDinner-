@@ -1,8 +1,6 @@
 <template>
   <div class="recipes" >
 
-    <h3>Sort By Category</h3>
-
     <div class="custom-select">
       <select name="category"  v-model="selected" @change="getMealsByCategory(selected)">
         <option value="">Pick a category</option>
@@ -23,8 +21,11 @@
       </select>
     </div>
 
+    <h3 class="sorting" @click="sortFromAToZ()">Sort from A - Z</h3>
+    <h3 class="sorting" @click="sortFromZToA()">Sort from Z - A</h3>
+
     <section v-if="selected == ''" class="cards-container">
-      <div v-for="option in moreRecipes" :key="option.id">
+      <div v-for="option in recipes" :key="option.id">
         <article class="card">
           <a @click="goToRecipe(option.id)" href="#top">
             <div class="flex-container">
@@ -50,9 +51,39 @@ import { RecipeTeaser } from '../models/recipesTeaser';
 export default class Recipes extends Vue {
   public selected = '';
 
-  public moreRecipes: RecipeTeaser[] = [];
+  public recipes: RecipeTeaser[] = [];
 
   public mealsSet = new Set();
+
+  public compare( a, b ) {
+  if ( a.title < b.title ) {
+    return -1;
+  }
+  if ( a.title > b.title ) {
+    return 1;
+  }
+  return 0;
+  }
+
+  public sortFromAToZ() {
+    const sortAToZ = this.recipes.sort(this.compare);
+    this.recipes = sortAToZ;
+  }
+
+  public reverseCompare( a, b ) {
+  if ( a.title > b.title ) {
+    return -1;
+  }
+  if ( a.title < b.title ) {
+    return 1;
+  }
+  return 0;
+  }
+
+  public sortFromZToA() {
+    const sortZToA = this.recipes.sort(this.reverseCompare);
+    this.recipes = sortZToA;
+  }
 
   public getTenMeals() {
     for (let i = 0; i < 15; i++) {
@@ -69,7 +100,7 @@ export default class Recipes extends Vue {
               title: response.data.meals[0].strMeal,
               image: response.data.meals[0].strMealThumb,
             };
-          this.moreRecipes.push(mealTeaser);
+          this.recipes.push(mealTeaser);
         }
       })
       .catch( (error) => {
@@ -88,7 +119,7 @@ export default class Recipes extends Vue {
 
   public goToRecipe(id: string) {
     this.$router.push({ path: `/recipeDetails/${id}`});
-    this.moreRecipes = [];
+    this.recipes = [];
   }
 }
 </script>
@@ -105,5 +136,9 @@ export default class Recipes extends Vue {
     font-size: 18px;
     font-weight: 200;
     color: gray;
+  }
+
+  .sorting:hover {
+    cursor: pointer;
   }
 </style>
