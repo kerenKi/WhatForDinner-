@@ -36,7 +36,7 @@ export default class RandomRecipe extends Vue {
     mealApi.get('random.php')
     .then((response) => {
       const meal = response.data.meals[0];
-      const fullRecipe = constructRecipeFromAPIResponse(meal);
+      const fullRecipe: Recipe = constructRecipeFromAPIResponse(meal);
       self.recipe = fullRecipe;
     })
     .catch( (error) => {
