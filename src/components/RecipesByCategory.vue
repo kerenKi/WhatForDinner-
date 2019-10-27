@@ -34,7 +34,7 @@ export default class RecipesByCategory extends Vue {
     mealApi.get(`filter.php?c=${this.$route.params.category}`)
     .then( (response) => {
       for (const meal of response.data.meals) {
-        const mealTeaser = {
+        const mealTeaser: RecipeTeaser = {
               id: meal.idMeal,
               title: meal.strMeal,
               image: meal.strMealThumb,

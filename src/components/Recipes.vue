@@ -49,13 +49,13 @@ import { RecipeTeaser } from '../models/recipesTeaser';
 
 @Component
 export default class Recipes extends Vue {
-  public selected = '';
+  public selected: string = '';
 
   public recipes: RecipeTeaser[] = [];
 
   public mealsSet = new Set();
 
-  public compare( a, b ) {
+  public compare( a: object, b: object ) {
   if ( a.title < b.title ) {
     return -1;
   }
@@ -66,11 +66,11 @@ export default class Recipes extends Vue {
   }
 
   public sortFromAToZ() {
-    const sortAToZ = this.recipes.sort(this.compare);
+    const sortAToZ: RecipeTeaser[] = this.recipes.sort(this.compare);
     this.recipes = sortAToZ;
   }
 
-  public reverseCompare( a, b ) {
+  public reverseCompare( a: object, b: object ) {
   if ( a.title > b.title ) {
     return -1;
   }
@@ -81,7 +81,7 @@ export default class Recipes extends Vue {
   }
 
   public sortFromZToA() {
-    const sortZToA = this.recipes.sort(this.reverseCompare);
+    const sortZToA: RecipeTeaser[] = this.recipes.sort(this.reverseCompare);
     this.recipes = sortZToA;
   }
 

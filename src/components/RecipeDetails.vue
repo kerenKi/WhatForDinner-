@@ -53,7 +53,7 @@ export default class RecipeDetails extends Vue {
         const meals = response.data.meals;
         for (let i = 0; i < 3; i++) {
           const meal = meals.splice(Math.floor(Math.random() * meals.length), 1);
-          const mealTeaser = {
+          const mealTeaser: RecipeTeaser = {
             id: meal[0].idMeal,
             title: meal[0].strMeal,
             image: meal[0].strMealThumb,
