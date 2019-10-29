@@ -16,8 +16,20 @@
     </div>
     <footer>
       <div>
-        <router-link to="/sitemap">Our Site Map</router-link>
-        <p> Made with ❤️, &#x3C; &#x3E; and ☕ </p>
+        <div class="first-list">
+          <ul>
+            <li><router-link  to="/" class="footer-links">Home</router-link></li>
+            <li><router-link  to="/about" class="footer-links">About</router-link></li>
+            <li><router-link  to="/contact" class="footer-links">Contact</router-link></li>
+          </ul>
+        </div>
+        <div class="second-list">
+          <ul>
+            <li><router-link  to="/categories" class="footer-links">Meals categories</router-link></li>
+            <li><router-link  to="/random" class="footer-links">Get a random recipe</router-link></li>
+          </ul>
+        </div>
+        <span> Made with ❤️, &#x3C; &#x3E; and ☕ </span>
       </div>
     </footer>
   </div>
@@ -45,8 +57,6 @@
 #nav {
   grid-area: navbar;
   padding: 1.5%;
-  position: fixed;
-  top: 0;
   display: grid;
   grid-template-areas:'nav-buttons headline .';
   width: 100%;
@@ -86,7 +96,7 @@
 .main {
   width: 100%;
   grid-area: main;
-  margin-top: 140px;
+  margin-top: 20px;
   margin-bottom: 70px;
 }
 
@@ -97,8 +107,32 @@ footer {
   background-color: rgba(132, 201, 178, 0.9);
   text-align: center;
   width: 100%;
-  display: flex;
-  justify-content: center;
+  .first-list {
+    width:10%;
+    display: flex;
+    float: left;
+    justify-content: left;
+  
+  }
+  .second-list {
+    width:25%;
+    display: flex;
+    float: left;
+  }
+  span {
+    display: flex;
+    float: right;
+    margin:50px;
+  }
+  .footer-links {
+    font-size: 20px;
+    font-weight: 400;
+    margin: 10px;
+    display: block;
+  }
+  .footer-links:hover {
+    color: white;
+  }
 }
 
 a {
@@ -233,13 +267,30 @@ img {
   }
 
   .main {
-    margin-top: 160px;
+    margin-top: 20px;
   }
   .recipe {
     width:100%;
   }
   .extra {
     width: 100%;
+  }
+
+  footer {
+    .first-list {
+    width:30%;
+    }
+    .second-list {
+      margin-left: 15px;
+      width:30%;
+    }
+    span {
+      margin: auto;
+      width: 50%;
+      display: block;
+      position: relative;
+      right: 20%;
+    }
   }
 
 }
@@ -275,6 +326,15 @@ img {
   .extra {
     width: 66%;
     
+  }
+
+  footer {
+  .second-list {
+    margin-left: 15px;
+  }
+  span {
+    margin:70px;
+  }
   }
 }
 </style>
