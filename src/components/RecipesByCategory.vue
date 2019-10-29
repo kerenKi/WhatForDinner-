@@ -49,7 +49,7 @@ export default class RecipesByCategory extends Vue {
   }
 
   public goToRecipe(id: string) {
-    this.$router.push({ path: `/recipeDetails/${id}`});
+    this.$router.push({ path: `/regular-recipe/${id}`});
   }
 }
 </script>

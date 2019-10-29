@@ -1,14 +1,12 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Home from './views/Home.vue';
-import RecipeDetails from '../src/components/RecipeDetails.vue';
+import RegularRecipe from '../src/components/RegularRecipe.vue';
 import RecipesByCategory from '../src/components/RecipesByCategory.vue';
-import Sitemap from '../src/views/Sitemap.vue';
 
 Vue.use(Router);
 
 const router: Router = new Router({
-// export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
@@ -18,32 +16,37 @@ const router: Router = new Router({
       component: Home,
     },
     {
+      path: '/about',
+      name: 'about',
+      component: () => import('./views/About.vue'),
+    },
+    {
+      path: '/contact',
+      name: 'contact',
+      component: () => import('./views/Contact.vue'),
+    },
+    {
       path: '/categories',
       name: 'categories',
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/Categories.vue'),
+      component: () => import('./views/Categories.vue'),
     },
     {
       path: '/random',
       name: 'random',
-      component: () => import(/* webpackChunkName: "about" */ './views/Random.vue'),
+      component: () => import('./views/Random.vue'),
     },
     {
-      path: '/recipeDetails/:id',
-      name: 'recipeDetails',
-      component: RecipeDetails,
+      path: '/regular-recipe/:id',
+      name: 'regular-recipe',
+      component: RegularRecipe,
     },
     {
       path: '/recipes/:category',
       name: '/recipesByCategory',
       component: RecipesByCategory,
-    },
-    {
-      path: '/sitemap',
-      name: 'sitemap',
-      component: Sitemap,
     },
   ],
 });
