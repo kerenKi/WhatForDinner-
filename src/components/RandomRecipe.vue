@@ -1,7 +1,7 @@
 <template>
   <div class="recipe">
 
-    <RecipeBase :recipe="recipe"/>
+    <RecipeDetails :recipe="recipe"/>
 
     <a href="#top" class="extra"> 
       <button @click="onClick"> Show me another random recipe </button>
@@ -15,11 +15,11 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 import { mealApi } from '../api';
 import { Recipe } from '../models/recipe';
 import constructRecipeFromAPIResponse from '../helpers';
-import RecipeBase from './RecipeBase.vue';
+import RecipeDetails from './RecipeDetails.vue';
 
 @Component({
   components: {
-    RecipeBase,
+    RecipeDetails,
   },
 })
 export default class RandomRecipe extends Vue {

@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Home from './views/Home.vue';
-import RecipeDetails from '../src/components/RecipeDetails.vue';
+import RegularRecipe from '../src/components/RegularRecipe.vue';
 import RecipesByCategory from '../src/components/RecipesByCategory.vue';
 
 Vue.use(Router);
@@ -39,9 +39,9 @@ const router: Router = new Router({
       component: () => import('./views/Random.vue'),
     },
     {
-      path: '/recipeDetails/:id',
-      name: 'recipeDetails',
-      component: RecipeDetails,
+      path: '/regular-recipe/:id',
+      name: 'regular-recipe',
+      component: RegularRecipe,
     },
     {
       path: '/recipes/:category',

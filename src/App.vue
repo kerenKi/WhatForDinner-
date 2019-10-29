@@ -1,8 +1,7 @@
 <template>
   <div id="app">
-    <a name="top"></a>
     <nav id="nav">
-      <span id="headline">The Meal Planner</span>
+      <span id="headline" name="top">The Meal Planner</span>
 
       <div class="nav-buttons">
         <router-link  to="/" class="nav-links">Home</router-link>
@@ -18,15 +17,15 @@
       <div>
         <div class="first-list">
           <ul>
-            <li><router-link  to="/" class="footer-links">Home</router-link></li>
-            <li><router-link  to="/about" class="footer-links">About</router-link></li>
-            <li><router-link  to="/contact" class="footer-links">Contact</router-link></li>
+            <li><router-link to="/" class="footer-links">Home</router-link></li>
+            <li><router-link to="/about" class="footer-links">About</router-link></li>
+            <li><router-link to="/contact" class="footer-links">Contact</router-link></li>
           </ul>
         </div>
         <div class="second-list">
           <ul>
-            <li><router-link  to="/categories" class="footer-links">Meals categories</router-link></li>
-            <li><router-link  to="/random" class="footer-links">Get a random recipe</router-link></li>
+            <li><router-link to="/categories" class="footer-links">Meals categories</router-link></li>
+            <li><router-link to="/random" class="footer-links">Get a random recipe</router-link></li>
           </ul>
         </div>
         <span> Made with ❤️, &#x3C; &#x3E; and ☕ </span>

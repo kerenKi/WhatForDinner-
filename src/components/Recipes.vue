@@ -118,7 +118,7 @@ export default class Recipes extends Vue {
   }
 
   public goToRecipe(id: string) {
-    this.$router.push({ path: `/recipeDetails/${id}`});
+    this.$router.push({ path: `/regular-recipe/${id}`});
     this.recipes = [];
   }
 }
